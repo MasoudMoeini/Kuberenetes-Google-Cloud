@@ -40,8 +40,7 @@ kubectl get service my-np-service --output yaml
 ```
 Finding external IP address of Nodes in Cluster
 ```
-kubectl get nodes --output wide
-curl External-IP:Node-port
+curl http://localhost:<Node-Port eg.31483 >
 ```
 Creating a Service of type LoadBalancer
 ```
