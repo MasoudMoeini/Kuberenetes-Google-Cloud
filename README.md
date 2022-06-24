@@ -23,12 +23,33 @@ kubectl get pods
 ```
 ```
 kubectl apply -f my-cip-service.yaml
+kubectl get service my-cip-service --output yaml
+kubectl get nodes --output wide
 ```
 ```
 kubectl get svc my-cip-service
 ```
 ```
 curl <CLUSTER-IP>:8080
+```
+Creating a Service of type NodePort:
+```
+kubectl apply -f my-deployment-50000.yaml
+kubectl apply -f my-np-service.yaml
+kubectl get service my-np-service --output yaml
+```
+Finding external IP address of Nodes in Cluster
+```
+kubectl get nodes --output wide
+curl External-IP:Node-port
+```
+Creating a Service of type LoadBalancer
+```
+kubectl apply -f my-deployment-50001.yaml
+kubectl get pods
+kubectl apply -f my-lb-service.yaml
+kubectl get service my-lb-service --output yaml
+curl lb-External-IP:60000
 ```
 Delete GKE cluster:
 ```
