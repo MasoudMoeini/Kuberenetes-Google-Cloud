@@ -50,6 +50,19 @@ kubectl apply -f my-lb-service.yaml
 kubectl get service my-lb-service --output yaml
 curl lb-External-IP:60000
 ```
+Manually exposing deployments
+```
+kubectl expose deployment my-deployment --name my-cip-service \
+    --type ClusterIP --protocol TCP --port 80 --target-port 8080
+```
+```
+kubectl expose deployment my-deployment-50000 --name my-np-service \
+    --type NodePort --protocol TCP --port 80 --target-port 50000
+```
+```
+kubectl expose deployment my-deployment-50001 --name my-lb-service \
+    --type LoadBalancer --port 60000 --target-port 50001
+```
 Delete GKE cluster:
 ```
 gcloud projects list
