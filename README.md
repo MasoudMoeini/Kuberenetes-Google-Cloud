@@ -30,4 +30,8 @@ kubectl get svc my-cip-service
 ```
 curl <CLUSTER-IP>:8080
 ```
-
+Delete GKE cluster:
+```
+gcloud projects list
+gcloud config set project <Project ID>
+gcloud container clusters delete my-cluster --zone us-central1-c
