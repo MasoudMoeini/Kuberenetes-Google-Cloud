@@ -38,7 +38,12 @@ kubectl apply -f my-deployment-50000.yaml
 kubectl apply -f my-np-service.yaml
 kubectl get service my-np-service --output yaml
 ```
-Finding external IP address of Nodes in Cluster
+Finding external IP address of Nodes in Cluster and creating firewall
+```
+kubectl get svc my-np-service
+gcloud compute firewall-rules create test-node-port \
+    --allow tcp:NODE_PORT
+```
 ```
 curl http://localhost:<Node-Port eg.31483 >
 ```
@@ -63,6 +68,13 @@ kubectl expose deployment my-deployment-50000 --name my-np-service \
 kubectl expose deployment my-deployment-50001 --name my-lb-service \
     --type LoadBalancer --port 60000 --target-port 50001
 ```
+Delete resources
+```
+kubectl delete services my-cip-service my-np-service my-lb-service
+kubectl delete deployments my-deployment my-deployment-50000 my-deployment-50001
+gcloud compute firewall-rules delete test-node-port
+```
+
 Delete GKE cluster:
 ```
 gcloud projects list
